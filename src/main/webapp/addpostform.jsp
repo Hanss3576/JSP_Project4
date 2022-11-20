@@ -9,7 +9,7 @@
 <body>
 
     <h1>Add New Post</h1>
-    <form action="addpost.jsp" method="post">
+    <form action="addpost.jsp" method="post" enctype="multipart/form-data">
         <table>
             <tr>
                 <td>Title:</td>
@@ -33,6 +33,11 @@
             <tr>
                 <td>Content:</td>
                 <td><textarea cols="50" rows="5" name="content"></textarea></td>
+                <td>
+<%--                    <form method="post" enctype="multipart/form-data">--%>
+                        <input type="file" name="photo">
+<%--                    </form>--%>
+                </td>
             </tr>
             <tr>
                 <td><a href="posts.jsp">View All Records</a></td>

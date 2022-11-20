@@ -11,7 +11,7 @@ public class BoardVO {
     private int cnt;
     private String category;
     private Date lastdate;
-    private String filename;
+    private String photo;
 
     public int getSeq() {
         return seq;
@@ -77,12 +77,12 @@ public class BoardVO {
 		this.lastdate = lastdate;
 	}
 
-	public String getFilename() {
-		return filename;
+	public String getPhoto() {
+		return photo;
 	}
 
-	public void setFilename(String filename) {
-		this.filename = filename;
+	public void setPhoto(String photo) {
+		this.photo = photo;
 	}
 
 

@@ -16,8 +16,8 @@ public class BoardDAO {
 	PreparedStatement stmt = null;
 	ResultSet rs = null;
 
-	private final String BOARD_INSERT = "insert into BOARD (title, writer, content, category) values (?,?,?,?)";
-	private final String BOARD_UPDATE = "update BOARD set title=?, writer=?, content=? where seq=?";
+	private final String BOARD_INSERT = "insert into BOARD (title, writer, content, category, photo) values (?,?,?,?,?)";
+	private final String BOARD_UPDATE = "update BOARD set title=?, writer=?, content=? category=? photo=? where seq=?";
 	private final String BOARD_DELETE = "delete from BOARD  where seq=?";
 	private final String BOARD_GET = "select * from BOARD  where seq=?";
 	private final String BOARD_LIST = "select * from BOARD order by seq desc";
@@ -31,6 +31,7 @@ public class BoardDAO {
 			stmt.setString(2, vo.getWriter());
 			stmt.setString(3, vo.getContent());
 			stmt.setString(4, vo.getCategory());
+			stmt.setString(5, vo.getPhoto());
 			stmt.executeUpdate();
 			return 1;
 		} catch (Exception e) {
@@ -46,6 +47,17 @@ public class BoardDAO {
 			conn = JDBCUtil.getConnection();
 			stmt = conn.prepareStatement(BOARD_DELETE);
 			stmt.setInt(1, vo.getSeq());
+			stmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void deleteBoard(int sid){
+		System.out.println("===> JDBC로 deleteBoard() 기능 처리");
+		try {
+			conn = JDBCUtil.getConnection();
+			stmt = conn.prepareStatement(BOARD_DELETE);
+			stmt.setInt(1, sid);
 			stmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -86,6 +98,7 @@ public class BoardDAO {
 				one.setTitle(rs.getString("title"));
 				one.setWriter(rs.getString("writer"));
 				one.setContent(rs.getString("content"));
+				one.setPhoto(rs.getString("photo"));
 				one.setCnt(rs.getInt("cnt"));
 			}
 			rs.close();
@@ -119,5 +132,23 @@ public class BoardDAO {
 			e.printStackTrace();
 		} 
 		return list;
+	}
+
+	public String getPhotoFilename(int sid) {
+		String filename = null;
+		try{
+			conn = JDBCUtil.getConnection();
+			stmt = conn.prepareStatement(BOARD_GET);
+			stmt.setInt(1, sid);
+			rs = stmt.executeQuery();
+			if(rs.next()){
+				filename = rs.getString("photo");
+			}
+			rs.close();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		return filename;
 	}
 }

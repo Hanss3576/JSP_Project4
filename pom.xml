@@ -30,12 +30,10 @@
             <artifactId>jstl</artifactId>
             <version>1.2</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/javax.servlet/jsp-api -->
         <dependency>
-            <groupId>javax.servlet</groupId>
+            <groupId>javax.servlet.jsp</groupId>
             <artifactId>jsp-api</artifactId>
-            <version>2.0</version>
-            <scope>provided</scope>
+            <version>2.2</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/servlets.com/cos -->
         <dependency>
@@ -47,7 +45,7 @@
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
-            <version>4.0.1</version>
+            <version>3.0.1</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
